@@ -1,0 +1,20 @@
+{
+  "name": "nodejs-docker-example",
+  "description": "Test NodeJS app for Docker example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://projects.sucs.org/imranh/nodejs-docker-example"
+  },
+  "keywords": [],
+  "author": "Imran Hussain <imranh@sucs.org>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://projects.sucs.org/imranh/nodejs-docker-example/issues"
+  },
+  "homepage": "https://projects.sucs.org/imranh/nodejs-docker-example"
+}
