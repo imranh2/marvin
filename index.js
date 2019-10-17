@@ -13,4 +13,5 @@ fs.readdir('./events/', (err, files) => {
   });
 });
 
+/* global process */
 client.login(process.env.BOT_TOKEN);
