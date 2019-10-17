@@ -1,20 +1,29 @@
 {
-  "name": "nodejs-docker-example",
-  "description": "Test NodeJS app for Docker example",
-  "version": "1.0.0",
+  "name": "Marvin",
+  "description": "A sad Discord Bot",
+  "version": "0.0.1",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://projects.sucs.org/imranh/nodejs-docker-example"
+    "url": "https://projects.sucs.org/imranh/marvin"
   },
   "keywords": [],
   "author": "Imran Hussain <imranh@sucs.org>",
   "license": "ISC",
   "bugs": {
-    "url": "https://projects.sucs.org/imranh/nodejs-docker-example/issues"
+    "url": "https://projects.sucs.org/imranh/marvin/issues"
   },
-  "homepage": "https://projects.sucs.org/imranh/nodejs-docker-example"
+  "homepage": "https://projects.sucs.org/imranh/marvin",
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  }
 }

@@ -1,25 +1,23 @@
-# NodeJS Docker Example
+# A sad Discord bot named Marvin
 
-This repo is an example of how to create a Docker Image out of a NodeJS app.
+A Discord bot for SUCS and maybe other servers.
 
-You can literally just fork and rename the repo.
+Relatively simple structure, index.js is the init, reads files in `events` dir
+ that coorospond to incoming events from Discord. Bot commands are handled by
+ messages.js which should look in the `commands` dir for the coorosponding
+ commands.
 
-## What Images are Built?
+`master` branch is latest and greatest, `tags` are for specific vertsions/releases.
 
-By default this is what is built.
+## How to dev?
 
-* latest - Every time you push to master a image is built with the image tag being the git commit full hash. This same image is also tagged as `latest`
-* tag - Every time you create a new git tag, a new image is built with that same tag.
+You'll need your own testing server for now.
 
-## Files in this repo
+1. Close the repo
+2. Get a bot token for a dev server
+3. Create a file called .env and add the line `BOT_TOKEN=<your token here`
+4. Run `npm run dev` and changes to files are tracked automagically
 
-| File | Explanation |
-| --- | --- |
-| .dockerignore | List of files not to be copied into the docker image. |
-| .gitignore | List of files to not be included in the git repo |
-| .gitlab-ci.yml | Settings file for Gitlab CI that tells it what to do and how. In this case build and publish a docker image. |
-| Dockerfile | File used by Docker (Google Kaniko in this case) to build a docker image. Change the initial NodeJS run file in here. |
-| README.md | What you are reading right now :) |
-| package.json | Example NodeJS package.json file |
-| npm-shrinkwrap.json | Example NodeJS npm-shrinkwrap.json file |
-| index.js | Example NodeJS code file |
+## How to contribute?
+
+Fork the repo, create a branch per feature/bug, and submit a Merge Request.
