@@ -1,4 +1,4 @@
-# A sad Discord bot named Marvin
+# A Discord bot named Marvin
 
 A Discord bot for SUCS and maybe other servers.
 
