@@ -2,12 +2,13 @@
 
 A Discord bot for SUCS and maybe other servers.
 
-Relatively simple structure, index.js is the init, reads files in `events` dir
- that coorospond to incoming events from Discord. Bot commands are handled by
- messages.js which should look in the `commands` dir for the coorosponding
- commands.
+Relatively simple structure, `index.js` is the init, reads files in `events` 
+ dir that coorospond to incoming events from Discord. Bot commands are
+ handled by `message.js` which should look in the `commands` dir for the
+ coorosponding commands.
 
-`master` branch is latest and greatest, `tags` are for specific vertsions/releases.
+`master` branch is latest and greatest, `tags` are for specific 
+ vertsions/releases.
 
 ## How to dev?
 
@@ -21,3 +22,6 @@ You'll need your own testing server for now.
 ## How to contribute?
 
 Fork the repo, create a branch per feature/bug, and submit a Merge Request.
+
+Your code must pass the tests which can be verified by you running
+ `npm run test`
