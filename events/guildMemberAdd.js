@@ -1,5 +1,5 @@
 module.exports = (client, member) => {
-	member.send(
-		`Welcome on the server!`
-	);
+  member.send(
+      `Welcome on the server!`
+  );
 };
