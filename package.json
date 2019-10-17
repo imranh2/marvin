@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/eslint/bin/eslint.js index.js commands/*.js events/*.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,8 @@
     "dotenv": "^8.2.0"
   },
   "devDependencies": {
+    "eslint": "^6.5.1",
+    "eslint-config-google": "^0.14.0",
     "nodemon": "^1.19.4"
   }
 }
