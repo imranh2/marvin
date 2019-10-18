@@ -5,6 +5,7 @@ module.exports = {
   usage: '<user>',
   cooldown: 10,
   guildOnly: true,
+  staffOnly: true,
   execute(message) {
     const member = message.mentions.members.first();
 

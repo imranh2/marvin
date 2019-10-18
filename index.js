@@ -4,6 +4,10 @@ const fs = require('fs');
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
+if (process.env.DEV_MODE === 'true') {
+  console.log('DEV_MODE set, enabling dev commands...');
+}
+
 // main event handler, look in a folder clled "events" and when one comes in
 // that matches use that file
 fs.readdir('./events/', (err, files) => {
@@ -19,7 +23,11 @@ const commandFiles = fs.readdirSync('./commands')
 
 for (const file of commandFiles) {
   const command = require(`./commands/${file}`);
-  client.commands.set(command.name, command);
+  if ( command.devOnly && process.env.DEV_MODE !== 'true') {
+    console.log('Not loading command ' + command.name + ' as it\'s marked as dev but we are not in DEV_MODE');
+  } else {
+    client.commands.set(command.name, command);
+  }
 }
 
 /* global process */
