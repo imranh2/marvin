@@ -1,6 +1,8 @@
 module.exports = {
   name: 'kick',
   description: 'Kick someone',
+  args: true,
+  usage: '<user>',
   cooldown: 10,
   guildOnly: true,
   execute(message) {
