@@ -70,7 +70,7 @@ module.exports = {
     async function verifyMembership(apiData) {
       message.reply('Trying to verify your membership');
       message.reply('This could take awhile');
-      message.reply('I\m not very fast...');
+      message.reply('I\'m not very fast...');
       let verified = false;
 
       await apiData.forEach(function(member) {

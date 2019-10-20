@@ -34,8 +34,8 @@ module.exports = (client, message) => {
 
   if (command.dmOnly && message.channel.type !== 'dm') {
     message.delete()
-      .then(msg => console.log(`Deleted message from ${msg.author.username}`))
-      .catch(console.error);
+        .then((msg) => console.log(`Deleted message from ${msg.author.username}`))
+        .catch(console.error);
     message.reply('I can only do that in DMs');
     return;
   }
