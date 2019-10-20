@@ -4,8 +4,10 @@ module.exports = {
   args: true,
   usage: '<integer between 0 and 100>',
   devOnly: true,
-  execute(message, args) {
+  execute(client, message, args) {
     const amount = parseInt(args[0]) + 1;
+
+    console.log(args[0]);
 
     if (isNaN(amount)) {
       return message.reply('that doesn\'t seem to be a valid number.');

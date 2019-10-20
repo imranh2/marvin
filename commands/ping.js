@@ -4,7 +4,7 @@ module.exports = {
   cooldown: 5,
   devOnly: false,
   staffOnly: false,
-  execute(message) {
+  execute(client, message) {
     message.reply('Pong.');
   },
 };

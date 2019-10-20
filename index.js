@@ -1,3 +1,4 @@
+/* global process*/
 require('dotenv').config();
 const Discord = require('discord.js');
 const fs = require('fs');
@@ -30,5 +31,4 @@ for (const file of commandFiles) {
   }
 }
 
-/* global process */
 client.login(process.env.BOT_TOKEN);

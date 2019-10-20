@@ -6,7 +6,7 @@ module.exports = {
   cooldown: 10,
   guildOnly: true,
   staffOnly: true,
-  execute(message) {
+  execute(client, message) {
     const member = message.mentions.members.first();
 
     if (!member) {

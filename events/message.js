@@ -22,6 +22,24 @@ module.exports = (client, message) => {
   // not a command we know about? don't do anything...
   if (!command) return;
 
+  if (command.devOnly && process.env.DEV_MODE !== 'true') {
+    console.log(message.guild.name + ': ' + message.author.username + ' tried to run the dev command ' + command.name);
+    return;
+  }
+
+  if (command.staffOnly && !message.member.roles.find( (r) => r.name === process.env.STAFF_GROUP)) {
+    console.log(message.guild.name + ': ' + message.author.username + ' tried to use the Staff command ' + message);
+    return;
+  }
+
+  if (command.dmOnly && message.channel.type !== 'dm') {
+    message.delete()
+      .then(msg => console.log(`Deleted message from ${msg.author.username}`))
+      .catch(console.error);
+    message.reply('I can only do that in DMs');
+    return;
+  }
+
   if (command.guildOnly && message.channel.type !== 'text') {
     return message.reply('I can\'t execute that command inside DMs!');
   }
@@ -58,7 +76,7 @@ module.exports = (client, message) => {
   setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
   try {
-    command.execute(message, args);
+    command.execute(client, message, args);
   } catch (error) {
     console.error(error);
     message.reply('there was an error trying to execute that command!');
