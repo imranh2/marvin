@@ -5,6 +5,7 @@ image:
 stages:
   - test
   - build
+  - deploy
 
 Run Tests:
   stage: test
@@ -28,3 +29,19 @@ Build and Push tag:
   script:
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"gitlab-ci-token\",\"password\":\"$CI_JOB_TOKEN\"}}}" > /kaniko/.docker/config.json
     - /kaniko/executor --cache=true --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+
+Deploy Tag:
+  stage: deploy
+  image: debian:latest
+  only:
+    - tags
+  script:
+    - apt update -y && apt install openssh-client -y
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo $SSH_PRIVATE_KEY_B64 | base64 -d > ~/.ssh/id_ed25519
+    - chmod 600 ~/.ssh/id_ed25519
+    - ssh-keyscan -H 192.168.10.59 >> ~/.ssh/known_hosts
+    - ssh root@192.168.10.59 "docker stop marvin || true"
+    - ssh root@192.168.10.59 "docker docker rmi --force $CI_REGISTRY_IMAGE 2>/dev/null || true"
+    - ssh root@192.168.10.59 "docker run --name marvin -v /opt/marvin/.env:/opt/nodeapp/.env $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME"
