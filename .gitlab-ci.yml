@@ -43,6 +43,7 @@ Deploy Tag:
     - chmod 600 ~/.ssh/id_ed25519
     - ssh-keyscan -H 192.168.10.59 >> ~/.ssh/known_hosts
     - ssh root@192.168.10.59 "docker stop marvin || true"
+    - ssh root@192.168.10.59 "docker rm marvin || true"
     - ssh root@192.168.10.59 "docker docker rmi --force $CI_REGISTRY_IMAGE 2>/dev/null || true"
     - ssh root@192.168.10.59 "docker run -d --name marvin -v /opt/marvin/.env:/opt/nodeapp/.env $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME"
   environment:
