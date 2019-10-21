@@ -1,5 +1,5 @@
 /* global process */
-const apis = JSON.parse(process.env.SOCS);
+const settings = JSON.parse(process.env.SOCS);
 module.exports = {
   name: 'verify',
   description: 'Verify your society membership status',
@@ -84,7 +84,7 @@ module.exports = {
           console.log('Sucess! ' + message.author.username + ' is in ' + soc);
 
           const targetGuild = client.guilds.find((val) => val.name === soc);
-          const targetRole = targetGuild.roles.find((val) => val.name === process.env.MEMBER_GROUP );
+          const targetRole = targetGuild.roles.find((val) => val.name === settings[soc].member_group );
           targetGuild.fetchMember(message.author)
               .then( (discordMember) => {
                 discordMember.addRole(targetRole);
@@ -120,7 +120,7 @@ module.exports = {
 
     console.log('Verify ' + message.author.username + ' is in ' + soc);
 
-    if (apis[soc] === undefined) {
+    if (settings[soc] === undefined) {
       console.error('Unsupported society!');
       message.reply('That society doesn\'t like me :(');
       return;
@@ -139,9 +139,9 @@ module.exports = {
     let apiData;
 
     if (process.env.DEV_MODE === 'true') {
-      apiData = getTestAPIData(apis[soc].apikey, apis[soc].orgid);
+      apiData = getTestAPIData(settings[soc].apikey, settings[soc].orgid);
     } else {
-      apiData = await getAPIData(apis[soc].apikey, apis[soc].orgid);
+      apiData = await getAPIData(settings[soc].apikey, settings[soc].orgid);
     }
 
     verifyMembership(apiData);

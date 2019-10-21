@@ -1,6 +1,7 @@
 /* global process */
 const Discord = require('discord.js');
 const cooldowns = new Discord.Collection();
+const settings = JSON.parse(process.env.SOCS);
 
 module.exports = (client, message) => {
   // let mw people know that they are on discord
@@ -27,7 +28,7 @@ module.exports = (client, message) => {
     return;
   }
 
-  if (command.staffOnly && !message.member.roles.find( (r) => r.name === process.env.STAFF_GROUP)) {
+  if (command.staffOnly && !message.member.roles.find( (r) => r.name === settings[message.member.guild.name].staff_group)) {
     console.log(message.guild.name + ': ' + message.author.username + ' tried to use the Staff command ' + message);
     return;
   }
