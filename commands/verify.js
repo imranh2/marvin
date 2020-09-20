@@ -59,7 +59,7 @@ module.exports = {
       const apiResponse = await getContent(apiurl);
 
       // Check to see if we only get one type of member
-      if (apiResponse.table1.table1_Product_Collection.table1_Product[0] === undefined) {
+      if (JSON.parse(apiResponse).table1.table1_Product_Collection.table1_Product[0] === undefined) {
         return JSON.parse(apiResponse).table1.table1_Product_Collection.table1_Product.Detail_Collection.Detail;
       } else {
         return JSON.parse(apiResponse).table1.table1_Product_Collection.table1_Product[0].Detail_Collection.Detail;
