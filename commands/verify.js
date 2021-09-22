@@ -70,7 +70,7 @@ module.exports = {
     * Verifies the person is a member and adds them to thr discord role
     * fuction
     * @param {json} apiData - SUCS SU APIv2 formated JSON
-    * @return {null} - nothing :)
+    //* @return {null} - nothing :)
     */
     function verifyMembership(apiData) {
       message.reply('Trying to verify your membership');
@@ -114,8 +114,7 @@ module.exports = {
       // No match found, probably not a member
       if (verified) {
         return;
-      }
-      else {
+      } else {
         console.warn('Couldn\'t verify ' + message.author.username + ' ');
         message.reply('Bah!');
         message.reply('Couldn\'t find you in the list of members');
