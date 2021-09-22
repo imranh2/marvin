@@ -1,5 +1,5 @@
 #What image should our image be based off of?
-FROM node:lts
+FROM node:12
 
 RUN mkdir -p /opt/nodeapp/node_modules && chown -R node:node /opt/nodeapp
 
