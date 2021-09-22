@@ -90,6 +90,7 @@ module.exports = {
           console.log('Sucess! ' + message.author.username + ' is in ' + soc);
 
           const targetGuild = await client.guilds.cache.find((val) => val.name === soc);
+          console.log(targetGuild);
           const targetRole = await targetGuild.roles.cache.find((val) => val.name === settings[soc].member_group );
           console.log(targetRole);
           targetGuild.members.fetch(message.author)
