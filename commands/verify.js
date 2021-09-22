@@ -88,11 +88,11 @@ module.exports = {
         if (member.transaction_id === transid && member.card_number === sn) {
           console.log('Sucess! ' + message.author.username + ' is in ' + soc);
 
-          const targetGuild = client.guilds.find((val) => val.name === soc);
-          const targetRole = targetGuild.roles.find((val) => val.name === settings[soc].member_group );
-          targetGuild.fetchMember(message.author)
+          const targetGuild = client.guilds.cache.find((val) => val.name === soc);
+          const targetRole = targetGuild.roles.cache.find((val) => val.name === settings[soc].member_group );
+          targetGuild.members.fetch(message.author)
               .then( (discordMember) => {
-                discordMember.addRole(targetRole);
+                discordMember.roles.add(targetRole);
                 console.log('Added ' + message.author.username + ' to the members role');
                 message.reply('Ah, hello ' + member.purchaser.split(' ').slice(-1));
                 message.reply('You\'ve been verified! :)');
