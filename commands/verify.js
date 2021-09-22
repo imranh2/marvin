@@ -72,13 +72,13 @@ module.exports = {
     * @param {json} apiData - SUCS SU APIv2 formated JSON
     * @return {null} - nothing :)
     */
-    async function verifyMembership(apiData) {
+    function verifyMembership(apiData) {
       message.reply('Trying to verify your membership');
       message.reply('This could take awhile');
       message.reply('I\'m not very fast...');
       let verified = false;
 
-      await apiData.forEach(function(member) {
+      apiData.forEach(async function(member) {
         if (verified) {
           return;
         }
@@ -86,10 +86,11 @@ module.exports = {
         member = member['@attributes'];
 
         if (member.transaction_id === transid && member.card_number === sn) {
+          verified = true;
           console.log('Sucess! ' + message.author.username + ' is in ' + soc);
 
-          const targetGuild = client.guilds.cache.find((val) => val.name === soc);
-          const targetRole = targetGuild.roles.cache.find((val) => val.name === settings[soc].member_group );
+          const targetGuild = await client.guilds.cache.find((val) => val.name === soc);
+          const targetRole = await targetGuild.roles.cache.find((val) => val.name === settings[soc].member_group );
           targetGuild.members.fetch(message.author)
               .then( (discordMember) => {
                 discordMember.roles.add(targetRole);
@@ -109,8 +110,12 @@ module.exports = {
               );
         }
       });
+
       // No match found, probably not a member
-      if (!verified) {
+      if (verified) {
+        return;
+      }
+      else {
         console.warn('Couldn\'t verify ' + message.author.username + ' ');
         message.reply('Bah!');
         message.reply('Couldn\'t find you in the list of members');
