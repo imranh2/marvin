@@ -1,7 +1,7 @@
 {
   "name": "Marvin",
   "description": "A sad Discord Bot",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -20,7 +20,7 @@
   },
   "homepage": "https://projects.sucs.org/imranh/marvin",
   "dependencies": {
-    "discord.js": "^11.5.1",
+    "discord.js": "^11.6.4",
     "dotenv": "^8.2.0"
   },
   "devDependencies": {
