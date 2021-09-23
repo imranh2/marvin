@@ -88,7 +88,7 @@ module.exports = {
         if (member.transaction_id === transid && member.card_number === sn) {
           console.log('Sucess! ' + message.author.username + ' is in ' + soc);
 
-          const targetGuild = client.guilds.cache.find((val) => val.name === soc);
+          const targetGuild = client.guilds.cache.find((val) => val.name.toLowerCase() === soc);
           const targetRole = targetGuild.roles.cache.find((val) => val.name === settings[soc].member_group );
           targetGuild.members.fetch(message.author)
               .then( (discordMember) => {
