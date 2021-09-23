@@ -16,7 +16,7 @@ fs.readdir('./events/', (err, files) => {
     const eventHandler = require(`./events/${file}`);
     const eventName = file.split('.')[0];
     if (process.env.DEBUG === 'true') {
-      console.log("DEBUG: Registering eventhandler for event: ", eventName);
+      console.log('DEBUG: Registering eventhandler for event: ', eventName);
     }
     client.on(eventName, (...args) => eventHandler(client, ...args));
   });

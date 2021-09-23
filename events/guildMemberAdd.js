@@ -1,9 +1,8 @@
 /* global process */
 const settings = JSON.parse(process.env.SOCS);
 module.exports = (client, member) => {
-
   if (process.env.DEBUG === 'true') {
-    console.log("DEBUG: Incoming event: ", "guildMemberAdd");
+    console.log('DEBUG: Incoming event: ', 'guildMemberAdd');
   }
 
   const greeting = `Hey ${member}, welcome to the server`;
