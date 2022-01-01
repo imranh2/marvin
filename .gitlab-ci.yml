@@ -3,9 +3,21 @@ image:
   entrypoint: [""]
 
 stages:
+  - mirror
   - test
   - build
   - deploy
+
+Mirror to Github:
+  stage: mirror
+  image: debian:stable
+  script:
+    - apt update -y && apt install openssh-client git -y
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo $SSH_PRIVATE_KEY_B64 | base64 -d > ~/.ssh/id_ed25519
+    - chmod 600 ~/.ssh/id_ed25519
+    - git push --mirror git@github.com:imranh2/marvin.git
 
 Run Tests:
   stage: test
